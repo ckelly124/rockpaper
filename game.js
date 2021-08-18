@@ -92,3 +92,9 @@ function comPlayTest(){
      Scissor: ${ scissorCount}`
     return result;
 }
+const rpsButtons = document.querySelector('#rpsButtons');
+
+const rockButton = document.createElement('button');
+rockButton.classList.add('button');
+rockButton.textContent="Choose Rock!";
+rpsButtons.appendChild(rockButton);
