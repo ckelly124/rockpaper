@@ -16,14 +16,12 @@ function playerPrompt(){
     }
 }
 function round(playerSelection, computerSelection){
-    alert(`Player chose ${playerSelection}. Computer chose ${computerSelection}`);
+    changeText(`Player chose ${playerSelection}. Computer chose ${computerSelection}`);
     let play=playerSelection.toLowerCase();
     let comp=computerSelection.toLowerCase();
     const opt=["rock","paper", "scissors"];
     if(play===comp){
-       alert("It's a tie! Try again.");
-        playerSelection=playerPrompt();
-        return round(playerSelection, computerPlay())
+       return "It's a tie! Try again.";
     } else if (play===opt[0] && comp===opt[1]){
         compSc++;
         return "Ha, you lose! Paper beats Rock.";
@@ -53,22 +51,24 @@ function round(playerSelection, computerSelection){
 function game(){
     playSc=0;
     compSc=0;
-    alert("Let the battle begin.");
+    //alert("Let the battle begin.");
+    changeText("Let the battle begin");
     let playerSelect=null;
     let compSelect=null;
-    for(let i=1; i<6; i++){
-        alert(`Round ${ i }`);
-        playerSelect= playerPrompt();
-        compSelect= computerPlay();
-        alert(round(playerSelect,computerPlay()));
-        alert(`Current Score- Player: ${ playSc } Computer: ${ compSc }`);
-    }
-    alert(`Final Score- Player: ${ playSc } Computer: ${ compSc }`);
+    //for(let i=1; i<6; i++){
+       // changeText(`Round ${ i }`);
+        //alert(`Round ${ i }`);
+    playerSelect= playerPrompt();
+    compSelect= computerPlay();
+    changeText(round(playerSelect,computerPlay())+`\n Current Score- Player: ${ playSc } Computer: ${ compSc }`);
+        //alert(`Current Score- Player: ${ playSc } Computer: ${ compSc }`);
+    //}
+    changeText(`Final Score- Player: ${ playSc } Computer: ${ compSc }`);
     if(playSc>compSc){
-       alert("Congrats!")
+        document.getElementById("textBox").textContent="Congrats!"
     }
     else{
-        alert("Better Luck Next Time!");
+        changeText("Better Luck Next Time!");
     }
 }
 function comPlayTest(){
@@ -94,6 +94,12 @@ function comPlayTest(){
      Scissor: ${ scissorCount}`
     return result;
 }
+const changeText= function(text){
+    document.getElementById("textBox").textContent=text;
+}
+const textBox= document.querySelector('#textBox');
+textBox.textContent ='Let the battle begin!';
+
 const startButton= document.querySelector('#startButton');
 startButton.addEventListener('click', game);
 
@@ -104,6 +110,7 @@ rockButton.classList.add('button');
 rockButton.textContent="Choose Rock!";
 rpsButtons.appendChild(rockButton);
 
+
 const paperButton = document.createElement('button');
 paperButton.classList.add('button');
 paperButton.textContent="Choose Paper!";
@@ -113,3 +120,13 @@ const scissorsButton = document.createElement('button');
 scissorsButton.classList.add('button');
 scissorsButton.textContent="Choose Scissors!";
 rpsButtons.appendChild(scissorsButton);
+
+rockButton.addEventListener('click', () => {
+    textBox.textContent=round('rock',computerPlay());
+});
+paperButton.addEventListener('click', () => {
+    textBox.textContent=round('paper',computerPlay());
+});
+scissorsButton.addEventListener('click', () => {
+    textBox.textContent=round('scissors',computerPlay());
+});
