@@ -1,9 +1,11 @@
 let playSc=0;
 let compSc=0;
+//Function chooses Rock, Paper, or Scissors for the computer
 function computerPlay(){
     const rps=["Rock","Paper", "Scissors"]
     return rps[Math.floor(Math.random()*3)]
 }
+//Functions created to prompt for user input on choosing RPS each round. 
 function playerPrompt(){
     let play= prompt("Rock, Paper, or Scissors?");
     if(play.toLowerCase()==="rock" || play.toLowerCase()==="paper" || play.toLowerCase()==="scissors"){
@@ -14,12 +16,12 @@ function playerPrompt(){
     }
 }
 function round(playerSelection, computerSelection){
-    console.log(`Player chose ${playerSelection}. Computer chose ${computerSelection}`);
+    alert(`Player chose ${playerSelection}. Computer chose ${computerSelection}`);
     let play=playerSelection.toLowerCase();
     let comp=computerSelection.toLowerCase();
     const opt=["rock","paper", "scissors"];
     if(play===comp){
-        console.log("It's a tie! Try again.");
+       alert("It's a tie! Try again.");
         playerSelection=playerPrompt();
         return round(playerSelection, computerPlay())
     } else if (play===opt[0] && comp===opt[1]){
@@ -51,22 +53,22 @@ function round(playerSelection, computerSelection){
 function game(){
     playSc=0;
     compSc=0;
-    console.log("Let the battle begin.");
+    alert("Let the battle begin.");
     let playerSelect=null;
     let compSelect=null;
     for(let i=1; i<6; i++){
-        console.log(`Round ${ i }`);
+        alert(`Round ${ i }`);
         playerSelect= playerPrompt();
         compSelect= computerPlay();
-        console.log(round(playerSelect,computerPlay()));
-        console.log(`Current Score- Player: ${ playSc } Computer: ${ compSc }`);
+        alert(round(playerSelect,computerPlay()));
+        alert(`Current Score- Player: ${ playSc } Computer: ${ compSc }`);
     }
-    console.log(`Final Score- Player: ${ playSc } Computer: ${ compSc }`);
+    alert(`Final Score- Player: ${ playSc } Computer: ${ compSc }`);
     if(playSc>compSc){
-        console.log("Congrats!")
+       alert("Congrats!")
     }
     else{
-        console.log("Better Luck Next Time!");
+        alert("Better Luck Next Time!");
     }
 }
 function comPlayTest(){
@@ -92,9 +94,22 @@ function comPlayTest(){
      Scissor: ${ scissorCount}`
     return result;
 }
+const startButton= document.querySelector('#startButton');
+startButton.addEventListener('click', game);
+
 const rpsButtons = document.querySelector('#rpsButtons');
 
 const rockButton = document.createElement('button');
 rockButton.classList.add('button');
 rockButton.textContent="Choose Rock!";
 rpsButtons.appendChild(rockButton);
+
+const paperButton = document.createElement('button');
+paperButton.classList.add('button');
+paperButton.textContent="Choose Paper!";
+rpsButtons.appendChild(paperButton);
+
+const scissorsButton = document.createElement('button');
+scissorsButton.classList.add('button');
+scissorsButton.textContent="Choose Scissors!";
+rpsButtons.appendChild(scissorsButton);
