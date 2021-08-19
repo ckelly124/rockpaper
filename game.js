@@ -107,18 +107,22 @@ const rpsButtons = document.querySelector('#rpsButtons');
 
 const rockButton = document.createElement('button');
 rockButton.classList.add('button');
-rockButton.textContent="Choose Rock!";
+//rockButton.textContent="Choose Rock!";
+rockButton.innerHTML = '<img src="images/Cyndaquil.png" />'
 rpsButtons.appendChild(rockButton);
 
 
 const paperButton = document.createElement('button');
 paperButton.classList.add('button');
 paperButton.textContent="Choose Paper!";
+paperButton.innerHTML = '<img src="images/Mudkip.png" />'
 rpsButtons.appendChild(paperButton);
 
 const scissorsButton = document.createElement('button');
 scissorsButton.classList.add('button');
-scissorsButton.textContent="Choose Scissors!";
+//scissorsButton.textContent="Choose Scissors!";
+scissorsButton.innerHTML = '<img src="images/Rowlett.png" />'
+
 rpsButtons.appendChild(scissorsButton);
 
 rockButton.addEventListener('click', () => {
