@@ -15,6 +15,22 @@ function playerPrompt(){
         return playerPrompt();
     }
 }
+const textBox= document.querySelector('#textBox');
+textBox.textContent ='Let the battle begin!';
+
+const scores= document.querySelector('#scores');
+scores.textContent= `Player: ${playSc} Rival: ${compSc}`;
+
+//startButton.addEventListener('click', game);
+
+const rpsButtons = document.querySelector('#rpsButtons');
+
+const startButton= document.createElement('button');
+startButton.classList.add('button');
+startButton.textContent="Click Here to Play";
+rpsButtons.appendChild(startButton);
+startButton.addEventListener('click', playGame);
+
 function round(playerSelection, computerSelection){
     changeText(`Player chose ${playerSelection}. Computer chose ${computerSelection}`);
     let play=playerSelection.toLowerCase();
@@ -93,22 +109,16 @@ const endGame= function(){
     scores.textContent= `Player: ${playSc} Rival: ${compSc}`;
     playSc=0;
     compSc=0;
-    
-    const paperButton= document.getElementById('paperButton');
-    const rockButton= document.getElementById('rockButton');
-    const scissorsButton= document.getElementById('scissorsButton');
 
-    console.log(rpsButtons.childNodes);
-
-    paperButton.remove();
-    rockButton.remove();
-    scissorsButton.remove();
+    const container= document.querySelector('#rpsButtons');
+    removeAllChildNodes(container);
+   // rockButton.remove();
+    //scissorsButton.remove();
     const restartButton= document.createElement('button');
     restartButton.classList.add('button');
     restartButton.textContent="Click Here to Play Again";
     rpsButtons.appendChild(restartButton);
     restartButton.addEventListener('click', playGame); 
-    alert("test");
     return;
 }
 const changeText= function(text){
@@ -117,42 +127,31 @@ const changeText= function(text){
 function clearcontent(elementID) {
     document.getElementById(elementID).innerHTML = "";
 }
-const textBox= document.querySelector('#textBox');
-textBox.textContent ='Let the battle begin!';
-
-const scores= document.querySelector('#scores');
-scores.textContent= `Player: ${playSc} Rival: ${compSc}`;
-
-//startButton.addEventListener('click', game);
-
-const rpsButtons = document.querySelector('#rpsButtons');
-
-const startButton= document.createElement('button');
-startButton.classList.add('button');
-startButton.textContent="Click Here to Play";
-rpsButtons.appendChild(startButton);
-startButton.addEventListener('click', playGame);
 
 function playGame(){
     scores.textContent= `Player: ${playSc} Rival: ${compSc}`;
-    rpsButtons.removeChild(startButton);
+    removeAllChildNodes(rpsButtons);
+
+    const rockButton = document.createElement('button');
+    rockButton.classList.add('button');
+    rockButton.textContent="Choose Rock!";
+    //rockButton.innerHTML = '<img src="images/Cyndaquil.png" />'
+    rpsButtons.appendChild(rockButton);
+
+
     const paperButton = document.createElement('button');
-    paperButton.classList.add('paperButton');
+    paperButton.classList.add('button');
     paperButton.textContent="Choose Paper!";
     //paperButton.innerHTML = '<img src="images/Mudkip.png" />'
     rpsButtons.appendChild(paperButton);
 
     const scissorsButton = document.createElement('button');
-    scissorsButton.classList.add('scissorsButton');
+    scissorsButton.classList.add('button');
     scissorsButton.textContent="Choose Scissors!";
     //scissorsButton.innerHTML = '<img src="images/Rowlett.png" />'
     rpsButtons.appendChild(scissorsButton);
 
-    const rockButton = document.createElement('button');
-    rockButton.classList.add('rockButton');
-    rockButton.textContent="Choose Rock!";
-    //rockButton.innerHTML = '<img src="images/Cyndaquil.png" />'
-    rpsButtons.appendChild(rockButton);
+    
 
     rockButton.addEventListener('click', () => {
         round('rock',computerPlay());
@@ -164,4 +163,9 @@ function playGame(){
         round('scissors',computerPlay());
     });
 
+}
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
 }
