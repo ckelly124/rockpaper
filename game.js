@@ -89,22 +89,26 @@ const checkScore= function(player, rival){
         endGame();
     }
 }
-const endGame= function(){
-    scores.textContent= `Player: ${playSc} Rival: ${compSc}`;
-    alert("Test");
-    //playSc=0;
-    //compSc=0;
+const endGame= function(){  
     scores.textContent= `Player: ${playSc} Rival: ${compSc}`;
     playSc=0;
     compSc=0;
+    
+    const paperButton= document.getElementById('paperButton');
+    const rockButton= document.getElementById('rockButton');
+    const scissorsButton= document.getElementById('scissorsButton');
 
-    //clearcontent('#rpsButtons');
+    console.log(rpsButtons.childNodes);
 
+    paperButton.remove();
+    rockButton.remove();
+    scissorsButton.remove();
     const restartButton= document.createElement('button');
     restartButton.classList.add('button');
     restartButton.textContent="Click Here to Play Again";
     rpsButtons.appendChild(restartButton);
     restartButton.addEventListener('click', playGame); 
+    alert("test");
     return;
 }
 const changeText= function(text){
@@ -133,19 +137,19 @@ function playGame(){
     scores.textContent= `Player: ${playSc} Rival: ${compSc}`;
     rpsButtons.removeChild(startButton);
     const paperButton = document.createElement('button');
-    paperButton.classList.add('button');
+    paperButton.classList.add('paperButton');
     paperButton.textContent="Choose Paper!";
     //paperButton.innerHTML = '<img src="images/Mudkip.png" />'
     rpsButtons.appendChild(paperButton);
 
     const scissorsButton = document.createElement('button');
-    scissorsButton.classList.add('button');
+    scissorsButton.classList.add('scissorsButton');
     scissorsButton.textContent="Choose Scissors!";
     //scissorsButton.innerHTML = '<img src="images/Rowlett.png" />'
     rpsButtons.appendChild(scissorsButton);
 
     const rockButton = document.createElement('button');
-    rockButton.classList.add('button');
+    rockButton.classList.add('rockButton');
     rockButton.textContent="Choose Rock!";
     //rockButton.innerHTML = '<img src="images/Cyndaquil.png" />'
     rpsButtons.appendChild(rockButton);
@@ -161,14 +165,3 @@ function playGame(){
     });
 
 }
-
-
-rockButton.addEventListener('click', () => {
-    round('rock',computerPlay());
-});
-paperButton.addEventListener('click', () => {
-    round('paper',computerPlay());
-});
-scissorsButton.addEventListener('click', () => {
-    round('scissors',computerPlay());
-});
