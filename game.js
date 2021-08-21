@@ -134,20 +134,20 @@ function playGame(){
 
     const rockButton = document.createElement('button');
     rockButton.classList.add('button');
-    rockButton.textContent="Choose Rock!";
+    rockButton.textContent="Choose Mudkip!";
     //rockButton.innerHTML = '<img src="images/Cyndaquil.png" />'
     rpsButtons.appendChild(rockButton);
 
 
     const paperButton = document.createElement('button');
     paperButton.classList.add('button');
-    paperButton.textContent="Choose Paper!";
+    paperButton.textContent="Choose Rowlett!";
     //paperButton.innerHTML = '<img src="images/Mudkip.png" />'
     rpsButtons.appendChild(paperButton);
 
     const scissorsButton = document.createElement('button');
     scissorsButton.classList.add('button');
-    scissorsButton.textContent="Choose Scissors!";
+    scissorsButton.textContent="Choose Cyndaquil!";
     //scissorsButton.innerHTML = '<img src="images/Rowlett.png" />'
     rpsButtons.appendChild(scissorsButton);
 
