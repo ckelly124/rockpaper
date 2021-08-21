@@ -21,55 +21,39 @@ function round(playerSelection, computerSelection){
     let comp=computerSelection.toLowerCase();
     const opt=["rock","paper", "scissors"];
     if(play===comp){
-       return "It's a tie! Try again.";
+        scores.textContent= `Player: ${playSc} Rival: ${compSc}`;
+        textBox.textContent= "It's a tie! Try again.";
     } else if (play===opt[0] && comp===opt[1]){
         compSc++;
-        return "Ha, you lose! Paper beats Rock.";
-
+        scores.textContent= `Player: ${playSc} Rival: ${compSc}`;
+        textBox.textContent= "Ha, you lose! Paper beats Rock.";
     }
     else if (play===opt[1] && comp===opt[2]){
         compSc++;
-        return "Ha, you lose! Scissors beats Paper.";
+        scores.textContent= `Player: ${playSc} Rival: ${compSc}`;
+        textBox.textContent= "Ha, you lose! Scissors beats Paper.";
     } 
     else if (play===opt[2] && comp===opt[0]){
         compSc++;
-        return "Ha, you lose! Rock beats Scissors.";
+        scores.textContent= `Player: ${playSc} Rival: ${compSc}`;
+        textBox.textContent= "Ha, you lose! Rock beats Scissors.";
     }
     else if (play===opt[0] && comp===opt[2]){
         playSc++;
-        return "You win! Rock beats Scissors.";
+        scores.textContent= `Player: ${playSc} Rival: ${compSc}`;
+        textBox.textContent= "You win! Rock beats Scissors.";
     }
     else if (play===opt[1] && comp===opt[0]){
         playSc++;
-        return "You win! Paper beats Rock.";
+        scores.textContent= `Player: ${playSc} Rival: ${compSc}`;
+        textBox.textContent= "You win! Paper beats Rock.";
     }
     else if (play===opt[2] && comp===opt[1]){
         playSc++;
-        return "You win! Scissors beats Paper.";
+        scores.textContent= `Player: ${playSc} Rival: ${compSc}`;
+        textBox.textContent= "You win! Scissors beats Paper.";
     }
-}
-function game(){
-    playSc=0;
-    compSc=0;
-    //alert("Let the battle begin.");
-    changeText("Let the battle begin");
-    let playerSelect=null;
-    let compSelect=null;
-    //for(let i=1; i<6; i++){
-       // changeText(`Round ${ i }`);
-        //alert(`Round ${ i }`);
-    playerSelect= playerPrompt();
-    compSelect= computerPlay();
-    changeText(round(playerSelect,computerPlay())+`\n Current Score- Player: ${ playSc } Computer: ${ compSc }`);
-        //alert(`Current Score- Player: ${ playSc } Computer: ${ compSc }`);
-    //}
-    changeText(`Final Score- Player: ${ playSc } Computer: ${ compSc }`);
-    if(playSc>compSc){
-        document.getElementById("textBox").textContent="Congrats!"
-    }
-    else{
-        changeText("Better Luck Next Time!");
-    }
+    checkScore(playSc,compSc);
 }
 function comPlayTest(){
     let rockCount=0;
@@ -94,43 +78,97 @@ function comPlayTest(){
      Scissor: ${ scissorCount}`
     return result;
 }
+
+const checkScore= function(player, rival){
+    if(player > 4){
+        document.getElementById("textBox").textContent="Congrats, you win!"
+        endGame();
+    }
+    if(rival > 4){
+        document.getElementById("textBox").textContent="Compuer wins, better luck next time!";
+        endGame();
+    }
+}
+const endGame= function(){
+    scores.textContent= `Player: ${playSc} Rival: ${compSc}`;
+    alert("Test");
+    //playSc=0;
+    //compSc=0;
+    scores.textContent= `Player: ${playSc} Rival: ${compSc}`;
+    playSc=0;
+    compSc=0;
+
+    //clearcontent('#rpsButtons');
+
+    const restartButton= document.createElement('button');
+    restartButton.classList.add('button');
+    restartButton.textContent="Click Here to Play Again";
+    rpsButtons.appendChild(restartButton);
+    restartButton.addEventListener('click', playGame); 
+    return;
+}
 const changeText= function(text){
     document.getElementById("textBox").textContent=text;
+}
+function clearcontent(elementID) {
+    document.getElementById(elementID).innerHTML = "";
 }
 const textBox= document.querySelector('#textBox');
 textBox.textContent ='Let the battle begin!';
 
-const startButton= document.querySelector('#startButton');
-startButton.addEventListener('click', game);
+const scores= document.querySelector('#scores');
+scores.textContent= `Player: ${playSc} Rival: ${compSc}`;
+
+//startButton.addEventListener('click', game);
 
 const rpsButtons = document.querySelector('#rpsButtons');
 
-const rockButton = document.createElement('button');
-rockButton.classList.add('button');
-//rockButton.textContent="Choose Rock!";
-rockButton.innerHTML = '<img src="images/Cyndaquil.png" />'
-rpsButtons.appendChild(rockButton);
+const startButton= document.createElement('button');
+startButton.classList.add('button');
+startButton.textContent="Click Here to Play";
+rpsButtons.appendChild(startButton);
+startButton.addEventListener('click', playGame);
 
+function playGame(){
+    scores.textContent= `Player: ${playSc} Rival: ${compSc}`;
+    rpsButtons.removeChild(startButton);
+    const paperButton = document.createElement('button');
+    paperButton.classList.add('button');
+    paperButton.textContent="Choose Paper!";
+    //paperButton.innerHTML = '<img src="images/Mudkip.png" />'
+    rpsButtons.appendChild(paperButton);
 
-const paperButton = document.createElement('button');
-paperButton.classList.add('button');
-paperButton.textContent="Choose Paper!";
-paperButton.innerHTML = '<img src="images/Mudkip.png" />'
-rpsButtons.appendChild(paperButton);
+    const scissorsButton = document.createElement('button');
+    scissorsButton.classList.add('button');
+    scissorsButton.textContent="Choose Scissors!";
+    //scissorsButton.innerHTML = '<img src="images/Rowlett.png" />'
+    rpsButtons.appendChild(scissorsButton);
 
-const scissorsButton = document.createElement('button');
-scissorsButton.classList.add('button');
-//scissorsButton.textContent="Choose Scissors!";
-scissorsButton.innerHTML = '<img src="images/Rowlett.png" />'
+    const rockButton = document.createElement('button');
+    rockButton.classList.add('button');
+    rockButton.textContent="Choose Rock!";
+    //rockButton.innerHTML = '<img src="images/Cyndaquil.png" />'
+    rpsButtons.appendChild(rockButton);
 
-rpsButtons.appendChild(scissorsButton);
+    rockButton.addEventListener('click', () => {
+        round('rock',computerPlay());
+    });
+    paperButton.addEventListener('click', () => {
+        round('paper',computerPlay());
+    });
+    scissorsButton.addEventListener('click', () => {
+        round('scissors',computerPlay());
+    });
+
+}
+
 
 rockButton.addEventListener('click', () => {
-    textBox.textContent=round('rock',computerPlay());
+    round('rock',computerPlay());
 });
 paperButton.addEventListener('click', () => {
-    textBox.textContent=round('paper',computerPlay());
+    round('paper',computerPlay());
 });
 scissorsButton.addEventListener('click', () => {
-    textBox.textContent=round('scissors',computerPlay());
+    round('scissors',computerPlay());
 });
