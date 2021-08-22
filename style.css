@@ -5,3 +5,7 @@ body {
     background-color: white;
     text-align: center;
 }
+#battlePic{
+    max-width: 50%;
+    height:auto;
+}
