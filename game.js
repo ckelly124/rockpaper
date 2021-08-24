@@ -3,7 +3,28 @@ let compSc=0;
 //Function chooses Rock, Paper, or Scissors for the computer
 function computerPlay(){
     const rps=["Mudkip","Rowlet", "Cyndaquil"]
-    return rps[Math.floor(Math.random()*3)]
+    const compChoice= rps[Math.floor(Math.random()*3)];
+    const compPoke=document.querySelector("#compPoke");
+    removeAllChildNodes(compPoke);
+    if(compChoice==="Mudkip"){
+        const mudkip= document.createElement('img');
+        mudkip.setAttribute('id','mudkip');
+        mudkip.setAttribute('src','images/Mudkip/front.webp');
+        compPoke.appendChild(mudkip);
+    }
+    else if(compChoice==="Rowlet"){
+        const rowlet= document.createElement('img');
+        rowlet.setAttribute('id','Rowlet');
+        rowlet.setAttribute('src','images/Rowlet/front.webp');
+        compPoke.appendChild(rowlet);
+    }
+    else if(compChoice==="Cyndaquil"){
+        const cyndaquil= document.createElement('img');
+        cyndaquil.setAttribute('id','cyndaquil');
+        cyndaquil.setAttribute('src','images/Cyndaquil/front.webp');
+        compPoke.appendChild(cyndaquil);
+    }
+    return compChoice;
 }
 //Functions created to prompt for user input on choosing RPS each round. 
 function playerPrompt(){
@@ -75,10 +96,22 @@ function round(playerSelection, computerSelection){
 const checkScore= function(player, rival){
     if(player > 4){
         document.getElementById("textBox").textContent="Congrats, you win!"
+        const compPoke=document.querySelector("#compPoke");
+        removeAllChildNodes(compPoke);
+        const rival= document.createElement('img');
+        rival.setAttribute('id','rival');
+        rival.setAttribute('src','images/rival.png');
+        compPoke.appendChild(rival);
         endGame();
     }
     if(rival > 4){
         document.getElementById("textBox").textContent="Computer wins, better luck next time!";
+        const compPoke=document.querySelector("#compPoke");
+        removeAllChildNodes(compPoke);
+        const rival= document.createElement('img');
+        rival.setAttribute('id','rival');
+        rival.setAttribute('src','images/rival.png');
+        compPoke.appendChild(rival);
         endGame();
     }
 }
@@ -99,13 +132,12 @@ const endGame= function(){
 const changeText= function(text){
     document.getElementById("textBox").textContent=text;
 }
-function clearcontent(elementID) {
-    document.getElementById(elementID).innerHTML = "";
-}
-
 function playGame(){
     scores.textContent= `Player: ${playSc} Rival: ${compSc}`;
+    textBox.textContent="Choose your starter to begin.";
     removeAllChildNodes(rpsButtons);
+    removeAllChildNodes(compPoke);
+    removeAllChildNodes(chosenPoke);
 
     const rockButton = document.createElement('button');
     rockButton.classList.add('button');
@@ -130,12 +162,30 @@ function playGame(){
 
     rockButton.addEventListener('click', () => {
         round('Mudkip',computerPlay());
+        const chosenPoke= document.querySelector('#chosenPoke');
+        removeAllChildNodes(chosenPoke);
+        const mudkip= document.createElement('img');
+        mudkip.setAttribute('id','mudkip');
+        mudkip.setAttribute('src','images/Mudkip/back.webp');
+        chosenPoke.appendChild(mudkip);
     });
     paperButton.addEventListener('click', () => {
         round('Rowlet',computerPlay());
+        const chosenPoke= document.querySelector('#chosenPoke');
+        removeAllChildNodes(chosenPoke);
+        const rowlet= document.createElement('img');
+        rowlet.setAttribute('id','Rowlet');
+        rowlet.setAttribute('src','images/Rowlet/back.webp');
+        chosenPoke.appendChild(rowlet);
     });
     scissorsButton.addEventListener('click', () => {
         round('Cyndaquil',computerPlay());
+        const chosenPoke= document.querySelector('#chosenPoke');
+        removeAllChildNodes(chosenPoke);
+        const cyndaquil= document.createElement('img');
+        cyndaquil.setAttribute('id','cyndaquil');
+        cyndaquil.setAttribute('src','images/Cyndaquil/back.webp');
+        chosenPoke.appendChild(cyndaquil);
     });
 
 }
