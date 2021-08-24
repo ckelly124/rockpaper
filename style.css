@@ -66,21 +66,28 @@ transition: all 0.2s;
     }
 }
 #battle{
-    font-size: large;
-    position:relative;
-    display: inline;
+    text-align: center;
+    position: relative;
 }
 #battlePic{
     max-width: 50%;
-    height:auto;
+    z-index: -5;
 }
 #textBox{
-    font-family: 'BattleFont';
     position: absolute;
+    font-family: 'BattleFont';
     text-align: center;
     margin: 0 auto;
     left: 0;
     right: 0;
-    bottom: 250%;
-    width: 90%;
+    bottom: 12%;
+    width: 45%;
+}
+#chosenPoke{
+    position: absolute;
+    height: 25%;
+    width: 10%;
+    left: 30%;
+
+    bottom: 40%;
 }

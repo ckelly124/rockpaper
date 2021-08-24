@@ -78,7 +78,7 @@ const checkScore= function(player, rival){
         endGame();
     }
     if(rival > 4){
-        document.getElementById("textBox").textContent="Compuer wins, better luck next time!";
+        document.getElementById("textBox").textContent="Computer wins, better luck next time!";
         endGame();
     }
 }
@@ -89,8 +89,6 @@ const endGame= function(){
 
     const container= document.querySelector('#rpsButtons');
     removeAllChildNodes(container);
-   // rockButton.remove();
-    //scissorsButton.remove();
     const restartButton= document.createElement('button');
     restartButton.classList.add('button');
     restartButton.textContent="Click Here to Play Again";
