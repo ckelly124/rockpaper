@@ -183,7 +183,7 @@ function playGame(){
         const chosenPoke= document.querySelector('#chosenPoke');
         removeAllChildNodes(chosenPoke);
         const cyndaquil= document.createElement('img');
-        cyndaquil.setAttribute('id','cyndaquil');
+        cyndaquil.setAttribute('id','cyndafront');
         cyndaquil.setAttribute('src','images/Cyndaquil/back.webp');
         chosenPoke.appendChild(cyndaquil);
     });

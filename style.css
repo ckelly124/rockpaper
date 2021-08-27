@@ -19,7 +19,7 @@ h1{
    letter-spacing: 1px;
 }
 #content{
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.6);
     text-align: center;
 }
 .button{
@@ -95,15 +95,37 @@ h1{
     position: absolute;
     height: 25%;
     width: 10%;
-    left: 55%;
+    left: 52%;
     bottom: 70%;
     text-align: center;
 }
 #Rowlet{
+    display: block;
     position: relative;
-
+}
+#cyndaquil{
+    position: relative;
+    bottom:-20%;
+    width: 115%;
+    left: 50%;
+    height: auto;
 }
 #rival{
     max-width: 70%;
     height:auto;
+}
+#cyndafront{
+    position:relative;
+    bottom:-55%;
+    left: 20%;
+}
+.footer {
+  position: fixed;
+  text-align: center;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 6%;
+  background-color: grey;
+  color: black;
 }
